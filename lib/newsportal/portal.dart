@@ -4,7 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:news_app/services/api_manager.dart';
 
 class Portal extends StatefulWidget {
-  const Portal({Key? key}) : super(key: key);
+  final apiUrl;
+  const Portal({Key? key, this.apiUrl}) : super(key: key);
 
   @override
   _PortalState createState() => _PortalState();
@@ -15,7 +16,7 @@ class _PortalState extends State<Portal> {
 
   @override
   void initState() {
-    _newsModel = APIManager().getProthomAloNews();
+    _newsModel = APIManager().getNews(widget.apiUrl);
     super.initState();
   }
 
@@ -33,6 +34,7 @@ class _PortalState extends State<Portal> {
                     var article = snapshot.data!.articles![index];
                     var formattedTime = DateFormat('dd MMM - HH:mm')
                         .format(article.publishedAt!);
+
                     return Container(
                       height: 100,
                       margin: const EdgeInsets.all(8),
@@ -55,7 +57,7 @@ class _PortalState extends State<Portal> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(formattedTime),
+                                //Text(formattedTime),
                                 Text(
                                   article.title!,
                                   overflow: TextOverflow.ellipsis,

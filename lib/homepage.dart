@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:news_app/newsportal/portal.dart';
+import 'package:news_app/strings.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,15 +18,15 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildItem("assets/images/prothomalo.png"),
+            _buildItem("assets/images/prothomalo.png", Strings.prothomaloUrl),
             const SizedBox(
               height: 20,
             ),
-            _buildItem("assets/images/bbc.png"),
+            _buildItem("assets/images/bbc.png", Strings.bbcUrl),
             const SizedBox(
               height: 20,
             ),
-            _buildItem("assets/images/thedailystar.png"),
+            _buildItem("assets/images/thedailystar.png", Strings.dailyStarUrl),
             const SizedBox(
               height: 20,
             ),
@@ -37,15 +36,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildItem(
-    String imgPath,
-  ) {
+  Widget _buildItem(String imgPath, String apiUrl) {
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
       child: InkWell(
           onTap: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => const Portal()));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => Portal(apiUrl: apiUrl)));
           },
           child: Center(
             child: Container(
