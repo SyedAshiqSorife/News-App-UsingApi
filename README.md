@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+In this app you can Prothom Alo, BBC and The Daily Star news. The news are fetch from newsapi.org
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
